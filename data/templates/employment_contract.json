@@ -1,0 +1,24 @@
+{
+  "id": "employment_contract",
+  "name": "Employment Contract",
+  "category": "employment",
+  "description": "A formal agreement between an employer and employee setting out the terms and conditions of employment.",
+  "fields": [
+    { "name": "employer_name", "label": "Employer Name", "type": "text", "required": true },
+    { "name": "employer_address", "label": "Employer Address", "type": "text", "required": true },
+    { "name": "employee_name", "label": "Employee Name", "type": "text", "required": true },
+    { "name": "employee_address", "label": "Employee Address", "type": "text", "required": true },
+    { "name": "job_title", "label": "Job Title", "type": "text", "required": true },
+    { "name": "start_date", "label": "Start Date", "type": "date", "required": true },
+    { "name": "salary_amount", "label": "Annual Salary (£/$/€)", "type": "text", "required": true },
+    { "name": "salary_currency", "label": "Currency", "type": "text", "required": true },
+    { "name": "pay_frequency", "label": "Pay Frequency (e.g. Monthly, Bi-weekly)", "type": "text", "required": true },
+    { "name": "working_hours_per_week", "label": "Working Hours Per Week", "type": "number", "required": true },
+    { "name": "holiday_days_per_year", "label": "Holiday Days Per Year", "type": "number", "required": true },
+    { "name": "notice_period_weeks", "label": "Notice Period (Weeks)", "type": "number", "required": true },
+    { "name": "probation_period_months", "label": "Probation Period (Months)", "type": "number", "required": false },
+    { "name": "place_of_work", "label": "Place of Work", "type": "text", "required": true },
+    { "name": "governing_law_state", "label": "Governing Law (State/Country)", "type": "text", "required": true }
+  ],
+  "content": "EMPLOYMENT CONTRACT\n\nThis Employment Contract (\"Agreement\") is entered into between:\n\n{{employer_name}}, located at {{employer_address}} (\"Employer\"),\n\nand\n\n{{employee_name}}, residing at {{employee_address}} (\"Employee\").\n\n1. POSITION AND DUTIES\nThe Employer agrees to employ the Employee in the position of {{job_title}}. The Employee shall perform all duties reasonably associated with this role and such other duties as may be assigned by the Employer from time to time.\n\n2. COMMENCEMENT DATE\nEmployment shall commence on {{start_date}}.\n\n3. PROBATIONARY PERIOD\nThe first {{probation_period_months}} month(s) of employment shall constitute a probationary period during which either party may terminate this Agreement with one week's written notice.\n\n4. PLACE OF WORK\nThe Employee's primary place of work shall be {{place_of_work}}. The Employer may require the Employee to work at other locations from time to time.\n\n5. WORKING HOURS\nThe Employee's normal working hours are {{working_hours_per_week}} hours per week. The Employee may be required to work additional hours as reasonably necessary to perform their duties.\n\n6. REMUNERATION\nThe Employee shall be paid a salary of {{salary_amount}} {{salary_currency}} per annum, paid {{pay_frequency}}. Salary shall be subject to review at the Employer's discretion.\n\n7. HOLIDAY ENTITLEMENT\nThe Employee is entitled to {{holiday_days_per_year}} days of paid annual leave per year, in addition to public holidays. Holiday requests must be approved in advance by the Employer.\n\n8. NOTICE PERIOD\nFollowing any probationary period, either party may terminate this Agreement by giving {{notice_period_weeks}} week(s) written notice to the other party.\n\n9. CONFIDENTIALITY\nThe Employee shall not, during or after employment, disclose any confidential information belonging to the Employer, its clients, or suppliers without prior written consent.\n\n10. INTELLECTUAL PROPERTY\nAll inventions, designs, works, and materials created by the Employee in the course of their employment shall be the exclusive property of the Employer.\n\n11. OUTSIDE EMPLOYMENT\nThe Employee shall not, without prior written consent of the Employer, engage in any other employment or business activity that conflicts with the interests of the Employer.\n\n12. GOVERNING LAW\nThis Agreement shall be governed by and construed in accordance with the laws of {{governing_law_state}}.\n\n13. ENTIRE AGREEMENT\nThis Agreement constitutes the entire agreement between the parties and supersedes all prior negotiations, representations, or agreements.\n\nIN WITNESS WHEREOF, the parties have signed this Agreement.\n\n_______________________________\nFor and on behalf of {{employer_name}}\nDate: _______________\n\n_______________________________\n{{employee_name}}\nEmployee\nDate: _______________"
+}

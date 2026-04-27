@@ -1,0 +1,53 @@
+{
+  "version": "1.0.0",
+  "templates": [
+    {
+      "id": "nda",
+      "name": "Non-Disclosure Agreement",
+      "category": "confidentiality",
+      "description": "A mutual or one-way agreement preventing parties from disclosing confidential information shared between them.",
+      "file": "nda.json"
+    },
+    {
+      "id": "employment_contract",
+      "name": "Employment Contract",
+      "category": "employment",
+      "description": "A formal agreement between an employer and employee setting out the terms and conditions of employment.",
+      "file": "employment_contract.json"
+    },
+    {
+      "id": "service_agreement",
+      "name": "Service Agreement",
+      "category": "commercial",
+      "description": "A contract between a service provider and a client defining the scope, terms, and payment for services rendered.",
+      "file": "service_agreement.json"
+    },
+    {
+      "id": "independent_contractor",
+      "name": "Independent Contractor Agreement",
+      "category": "employment",
+      "description": "An agreement engaging a self-employed individual or entity to perform specific work, clearly distinguishing them from an employee.",
+      "file": "independent_contractor.json"
+    },
+    {
+      "id": "lease_agreement",
+      "name": "Residential Lease Agreement",
+      "category": "property",
+      "description": "A contract between a landlord and tenant setting out the terms for renting a residential property.",
+      "file": "lease_agreement.json"
+    },
+    {
+      "id": "letter_of_intent",
+      "name": "Letter of Intent",
+      "category": "commercial",
+      "description": "A preliminary agreement outlining the key terms of a proposed transaction or partnership before a formal contract is drafted.",
+      "file": "letter_of_intent.json"
+    }
+  ],
+  "categories": [
+    { "id": "confidentiality", "label": "Confidentiality" },
+    { "id": "employment", "label": "Employment" },
+    { "id": "commercial", "label": "Commercial" },
+    { "id": "property", "label": "Property" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "letter_of_intent",
+  "name": "Letter of Intent",
+  "category": "commercial",
+  "description": "A preliminary agreement outlining the key terms of a proposed transaction or partnership before a formal contract is drafted.",
+  "fields": [
+    { "name": "sender_name", "label": "Sender Name / Organisation", "type": "text", "required": true },
+    { "name": "sender_address", "label": "Sender Address", "type": "text", "required": true },
+    { "name": "recipient_name", "label": "Recipient Name / Organisation", "type": "text", "required": true },
+    { "name": "recipient_address", "label": "Recipient Address", "type": "text", "required": true },
+    { "name": "date", "label": "Date", "type": "date", "required": true },
+    { "name": "transaction_description", "label": "Description of Proposed Transaction", "type": "textarea", "required": true },
+    { "name": "proposed_terms", "label": "Key Proposed Terms", "type": "textarea", "required": true },
+    { "name": "exclusivity_period_days", "label": "Exclusivity Period (Days)", "type": "number", "required": false },
+    { "name": "due_diligence_period_days", "label": "Due Diligence Period (Days)", "type": "number", "required": false },
+    { "name": "binding_provisions", "label": "Binding Provisions (e.g. confidentiality, exclusivity)", "type": "textarea", "required": false },
+    { "name": "loi_expiry_date", "label": "LOI Expiry Date", "type": "date", "required": true },
+    { "name": "governing_law_state", "label": "Governing Law (State/Country)", "type": "text", "required": true }
+  ],
+  "content": "LETTER OF INTENT\n\n{{date}}\n\n{{recipient_name}}\n{{recipient_address}}\n\nDear {{recipient_name}},\n\nRe: Letter of Intent – {{transaction_description}}\n\nThis Letter of Intent (\"LOI\") is submitted by {{sender_name}} (\"Sender\"), located at {{sender_address}}, to {{recipient_name}} (\"Recipient\"), to outline the proposed terms and conditions of the transaction described below. This LOI is intended to facilitate good-faith negotiations and does not constitute a binding agreement, except where expressly stated.\n\n1. PROPOSED TRANSACTION\n{{transaction_description}}\n\n2. KEY PROPOSED TERMS\n{{proposed_terms}}\n\n3. DUE DILIGENCE\nSubject to the parties entering into a binding agreement, the Sender shall have a period of {{due_diligence_period_days}} calendar days from the date of this LOI to conduct such due diligence as it considers appropriate.\n\n4. EXCLUSIVITY\nIn consideration of the Sender's commitment to good-faith negotiations, the Recipient agrees to negotiate exclusively with the Sender for a period of {{exclusivity_period_days}} calendar days from the date of this LOI.\n\n5. BINDING PROVISIONS\nNotwithstanding the non-binding nature of this LOI, the following provisions shall be legally binding on both parties:\n\n{{binding_provisions}}\n\n6. NON-BINDING NATURE\nExcept as set out in Section 5 above, this LOI is not a binding contract and does not obligate either party to proceed with or complete the proposed transaction. Either party may withdraw from negotiations at any time without liability.\n\n7. CONFIDENTIALITY\nBoth parties agree to keep the existence and contents of this LOI and all related negotiations strictly confidential, and not to disclose them to any third party without the prior written consent of the other party.\n\n8. EXPIRY\nThis LOI shall expire on {{loi_expiry_date}} unless extended in writing by both parties.\n\n9. GOVERNING LAW\nThis LOI shall be governed by and construed in accordance with the laws of {{governing_law_state}}.\n\nIf the foregoing is acceptable, please indicate your acknowledgement by signing below.\n\nYours sincerely,\n\n_______________________________\n{{sender_name}}\nDate: _______________\n\nACKNOWLEDGED AND AGREED:\n\n_______________________________\n{{recipient_name}}\nDate: _______________"
+}
