@@ -68,6 +68,9 @@ Thumbs.db
 logs/
 *.log
 
+# SQLite databases
+*.db
+
 # Misc
 *.pid
 *.seed
