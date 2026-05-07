@@ -1,15 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { jsPDF } from "jspdf";
 import type { Template } from "@/lib/mutual-nda-template";
+import NdaChat from "@/components/NdaChat";
 
 interface Props {
   template: Template;
 }
-
-const inputClass =
-  "w-full rounded-md border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500";
 
 export default function NdaCreator({ template }: Props) {
   const [values, setValues] = useState<Record<string, string>>(
@@ -38,9 +36,18 @@ export default function NdaCreator({ template }: Props) {
     [template.fields, values]
   );
 
-  function handleChange(name: string, value: string) {
-    setValues((prev) => ({ ...prev, [name]: value }));
-  }
+  const handleExtract = useCallback(
+    (extracted: Record<string, string>) => {
+      setValues((prev) => {
+        const next = { ...prev };
+        for (const [k, v] of Object.entries(extracted)) {
+          if (k in next && typeof v === "string") next[k] = v;
+        }
+        return next;
+      });
+    },
+    []
+  );
 
   function downloadPdf() {
     const doc = new jsPDF({ unit: "mm", format: "a4" });
@@ -80,42 +87,9 @@ export default function NdaCreator({ template }: Props) {
 
   return (
     <div className="flex h-[calc(100vh-56px)]">
-      {/* Form panel */}
-      <div className="w-1/2 overflow-y-auto border-r border-gray-200 p-6">
-        <h2 className="mb-1 text-lg font-semibold text-gray-900">Enter details</h2>
-        <p className="mb-6 text-sm text-gray-500">{template.description}</p>
-
-        <div className="space-y-5">
-          {template.fields.map((field) => (
-            <div key={field.name}>
-              <label
-                htmlFor={field.name}
-                className="mb-1 block text-sm font-medium text-gray-700"
-              >
-                {field.label}
-                {field.required && <span className="ml-1 text-red-500">*</span>}
-              </label>
-              {field.type === "textarea" ? (
-                <textarea
-                  id={field.name}
-                  className={`${inputClass} resize-none`}
-                  rows={3}
-                  value={values[field.name]}
-                  onChange={(e) => handleChange(field.name, e.target.value)}
-                />
-              ) : (
-                <input
-                  id={field.name}
-                  type={field.type}
-                  className={inputClass}
-                  value={values[field.name]}
-                  onChange={(e) => handleChange(field.name, e.target.value)}
-                  {...(field.type === "number" ? { min: 1, step: 1 } : {})}
-                />
-              )}
-            </div>
-          ))}
-        </div>
+      {/* Chat panel */}
+      <div className="w-1/2 border-r border-gray-200">
+        <NdaChat values={values} onExtract={handleExtract} />
       </div>
 
       {/* Preview panel */}

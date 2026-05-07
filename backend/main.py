@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -10,6 +11,10 @@ from jose import jwt
 import bcrypt
 from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine, select
+
+from chat import ChatRequest, ChatResponse, run_chat
+
+load_dotenv()
 
 SECRET_KEY = os.getenv("SECRET_KEY", "dev-secret-change-in-production")
 ALGORITHM = "HS256"
@@ -93,6 +98,11 @@ def signin(req: AuthRequest, session: Session = Depends(get_session)):
     if not user or not verify_password(req.password, user.hashed_password):
         raise HTTPException(401, "Invalid email or password")
     return TokenResponse(access_token=make_token(req.email))
+
+
+@app.post("/api/chat", response_model=ChatResponse)
+def chat(req: ChatRequest) -> ChatResponse:
+    return run_chat(req)
 
 
 # Serve static frontend — mounted last so /api/* routes take precedence
