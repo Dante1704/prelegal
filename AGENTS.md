@@ -4,11 +4,7 @@
 
 This is a SaaS product to allow users to draft legal agreements based on templates in the templates directory.
 The user can carry out AI chat in order to establish what document they want and how to fill in the fields.
-The available documents are covered in the catalog.json file in the project root, included here:
-
-@catalog.json
-
-The current implementation supports all 11 document types via AI chat with full user authentication and document persistence.
+The available documents are catalogued in `data/templates/index.json` (6 templates: NDA, employment contract, service agreement, independent contractor agreement, residential lease agreement, letter of intent).
 
 ## Development process
 
@@ -26,12 +22,11 @@ There is an OPENROUTER_API_KEY in the .env file in the project root.
 
 ## Technical design
 
-The entire project should be packaged into a Docker container.  
-The backend should be in backend/ and be a uv project, using FastAPI.  
-The frontend should be in frontend/  
-The database should use SQLLite and be created from scratch each time the Docker container is brought up, allowing for a users table with sign up and sign in.  
-Consider statically building the frontend and serving it via FastAPI, if that will work.  
-There should be scripts in scripts/ for:  
+The entire project is packaged into a Docker container (multi-stage build: Node 20 builds the frontend, Python 3.12 serves everything).  
+The backend is in `backend/` — a uv project using FastAPI, SQLModel, bcrypt, and python-jose.  
+The frontend is in `frontend/` — Next.js with `output: "export"` (static build), served by FastAPI from the `backend/static/` directory.  
+The database uses SQLite, created fresh each time the Docker container starts (users table with signup/signin, JWT auth).  
+There are scripts in scripts/ for:  
 ```bash
 # Mac
 scripts/start-mac.sh    # Start
@@ -53,3 +48,15 @@ Backend available at http://localhost:8000
 - Purple Secondary: `#753991` (submit buttons)
 - Dark Navy: `#032147` (headings)
 - Gray Text: `#888888`
+
+## Implementation Status
+
+### Done
+- **SCRUM-6**: 6 legal document templates in `data/templates/` with `index.json` catalogue
+- **SCRUM-7**: Next.js frontend — Mutual NDA creator with form, live preview, and PDF download (`frontend/components/NdaCreator.tsx`)
+- **SCRUM-8**: FastAPI backend with SQLite auth (signup/signin, JWT), Docker container, start/stop scripts, frontend auth pages (sign-in, sign-up, sign-out, `AuthGate`)
+
+### Not yet implemented
+- AI chat for document drafting (LLM integration via OpenRouter/Cerebras is designed but not wired up)
+- Document types beyond Mutual NDA in the frontend UI
+- Document persistence (saving/loading drafts)
