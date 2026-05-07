@@ -1,5 +1,5 @@
 # Stage 1: build the Next.js frontend
-FROM node:22-alpine3.21 AS frontend-builder
+FROM node:20-alpine AS frontend-builder
 RUN apk upgrade --no-cache
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
@@ -8,7 +8,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # Stage 2: Python runtime serving both API and static frontend
-FROM python:3.13-slim-bookworm
+FROM python:3.12-slim
 RUN apt-get update && apt-get upgrade -y && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 
