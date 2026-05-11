@@ -55,8 +55,8 @@ Backend available at http://localhost:8000
 - **SCRUM-6**: 6 legal document templates in `data/templates/` with `index.json` catalogue
 - **SCRUM-7**: Next.js frontend — Mutual NDA creator with form, live preview, and PDF download (`frontend/components/NdaCreator.tsx`)
 - **SCRUM-8**: FastAPI backend with SQLite auth (signup/signin, JWT), Docker container, start/stop scripts, frontend auth pages (sign-in, sign-up, sign-out, `AuthGate`)
+- **SCRUM-9**: AI chat for Mutual NDA — `/api/chat` endpoint (`backend/chat.py`) using LiteLLM + Cerebras with structured outputs; `frontend/components/NdaChat.tsx` replaces the form panel and populates the live preview from extracted fields
 
 ### Not yet implemented
-- AI chat for document drafting (LLM integration via OpenRouter/Cerebras is designed but not wired up)
 - Document types beyond Mutual NDA in the frontend UI
 - Document persistence (saving/loading drafts)
