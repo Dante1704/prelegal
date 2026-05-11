@@ -13,6 +13,7 @@ from pydantic import BaseModel
 from sqlmodel import Field, Session, SQLModel, create_engine, select
 
 from chat import ChatRequest, ChatResponse, run_chat
+from templates import list_summaries, load_template
 
 load_dotenv()
 
@@ -103,6 +104,19 @@ def signin(req: AuthRequest, session: Session = Depends(get_session)):
 @app.post("/api/chat", response_model=ChatResponse)
 def chat(req: ChatRequest) -> ChatResponse:
     return run_chat(req)
+
+
+@app.get("/api/templates")
+def templates_list():
+    return list_summaries()
+
+
+@app.get("/api/templates/{template_id}")
+def template_detail(template_id: str):
+    try:
+        return load_template(template_id)
+    except KeyError:
+        raise HTTPException(404, f"Unknown template: {template_id}")
 
 
 # Serve static frontend — mounted last so /api/* routes take precedence

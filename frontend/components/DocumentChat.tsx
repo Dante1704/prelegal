@@ -4,11 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import { sendChat, type ChatMessage } from "@/lib/chat";
 
 interface Props {
+  templateId: string | null;
   values: Record<string, string>;
   onExtract: (extracted: Record<string, string>) => void;
+  onSelectTemplate: (templateId: string) => void;
 }
 
-export default function NdaChat({ values, onExtract }: Props) {
+export default function DocumentChat({
+  templateId,
+  values,
+  onExtract,
+  onSelectTemplate,
+}: Props) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,7 +27,10 @@ export default function NdaChat({ values, onExtract }: Props) {
     setLoading(true);
     setError(null);
     try {
-      const res = await sendChat(history, values);
+      const res = await sendChat(history, values, templateId);
+      if (res.selected_template_id) {
+        onSelectTemplate(res.selected_template_id);
+      }
       if (Object.keys(res.extracted_fields).length > 0) {
         onExtract(res.extracted_fields);
       }
@@ -55,11 +65,16 @@ export default function NdaChat({ values, onExtract }: Props) {
     await exchange(next);
   }
 
+  const subtitle =
+    templateId === null
+      ? "Tell the AI which document you want to create."
+      : "Tell the AI about your document — fields will fill in automatically.";
+
   return (
     <div className="flex h-full flex-col">
       <div className="border-b border-gray-200 px-6 py-3">
         <h2 className="text-lg font-semibold text-gray-900">Chat with assistant</h2>
-        <p className="text-xs text-gray-500">Tell the AI about your NDA — fields will fill in automatically.</p>
+        <p className="text-xs text-gray-500">{subtitle}</p>
       </div>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-6 py-4 space-y-3">
