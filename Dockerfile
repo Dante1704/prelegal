@@ -20,7 +20,10 @@ COPY backend/pyproject.toml ./
 RUN uv sync --no-dev
 
 # Copy backend source
-COPY backend/main.py backend/chat.py ./
+COPY backend/main.py backend/chat.py backend/templates.py ./
+
+# Copy template catalogue (consumed by templates.py)
+COPY data/templates ./data/templates
 
 # Copy built frontend into static/
 COPY --from=frontend-builder /app/frontend/out ./static

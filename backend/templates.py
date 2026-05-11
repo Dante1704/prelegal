@@ -9,7 +9,17 @@ import json
 from functools import lru_cache
 from pathlib import Path
 
-TEMPLATES_DIR = Path(__file__).parent.parent / "data" / "templates"
+def _resolve_templates_dir() -> Path:
+    """Find the templates dir in both dev (`<repo>/data/templates`) and
+    docker (`/app/data/templates`, next to the module) layouts."""
+    here = Path(__file__).parent
+    for candidate in (here / "data" / "templates", here.parent / "data" / "templates"):
+        if candidate.is_dir():
+            return candidate
+    raise RuntimeError("Could not locate data/templates directory")
+
+
+TEMPLATES_DIR = _resolve_templates_dir()
 
 
 @lru_cache(maxsize=1)
