@@ -22,7 +22,7 @@ export default function Header() {
         <span className="text-lg font-bold tracking-tight" style={{ color: "#209dd7" }}>
           Prelegal
         </span>
-        <span className="ml-3 text-sm text-gray-500">Mutual NDA Creator</span>
+        <span className="ml-3 text-sm text-gray-500">Document Creator</span>
       </div>
       {authed && (
         <button

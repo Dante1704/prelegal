@@ -53,10 +53,10 @@ Backend available at http://localhost:8000
 
 ### Done
 - **SCRUM-6**: 6 legal document templates in `data/templates/` with `index.json` catalogue
-- **SCRUM-7**: Next.js frontend — Mutual NDA creator with form, live preview, and PDF download (`frontend/components/NdaCreator.tsx`)
+- **SCRUM-7**: Next.js frontend — generic document creator with live preview and PDF download (`frontend/components/DocumentCreator.tsx`; originally Mutual NDA only, generalised in SCRUM-10)
 - **SCRUM-8**: FastAPI backend with SQLite auth (signup/signin, JWT), Docker container, start/stop scripts, frontend auth pages (sign-in, sign-up, sign-out, `AuthGate`)
-- **SCRUM-9**: AI chat for Mutual NDA — `/api/chat` endpoint (`backend/chat.py`) using LiteLLM + Cerebras with structured outputs; `frontend/components/NdaChat.tsx` replaces the form panel and populates the live preview from extracted fields
+- **SCRUM-9**: AI chat for Mutual NDA — `/api/chat` endpoint (`backend/chat.py`) using LiteLLM + Cerebras with structured outputs; `frontend/components/DocumentChat.tsx` (originally `NdaChat.tsx`) replaces the form panel and populates the live preview from extracted fields
+- **SCRUM-10**: Expanded chat to all 6 templates. Two-stage chat (`backend/chat.py`): selection stage picks one of the supported templates (or suggests the closest if the user asks for something unsupported), then filling stage gathers field values. New `/api/templates` and `/api/templates/{id}` endpoints (`backend/templates.py`) serve `data/templates/*.json` as the single source of truth. Frontend renamed to `DocumentChat`/`DocumentCreator`; `frontend/lib/templates.ts` fetches templates at runtime.
 
 ### Not yet implemented
-- Document types beyond Mutual NDA in the frontend UI
 - Document persistence (saving/loading drafts)

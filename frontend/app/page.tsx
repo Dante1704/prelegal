@@ -1,11 +1,10 @@
 import AuthGate from "@/components/AuthGate";
-import NdaCreator from "@/components/NdaCreator";
-import mutualNdaTemplate from "@/lib/mutual-nda-template";
+import DocumentCreator from "@/components/DocumentCreator";
 
 export default function Home() {
   return (
     <AuthGate>
-      <NdaCreator template={mutualNdaTemplate} />
+      <DocumentCreator />
     </AuthGate>
   );
 }
